@@ -407,32 +407,55 @@
     (fn [s] (until p f x s))))
 
 ; Writer monad
-(comment
+(defprotocol writer-monad-protocol
+  "Accumulation of values into containers"
+  (writer-m-add [container value]
+  "add value to container, return new container")
+  (writer-m-combine [container1 container2]
+  "combine two containers, return new container"))
 
-  (defn writer-m
-    "Monad describing computations that accumulate data on the side, e.g. for
+(extend-protocol writer-monad-protocol
+
+  clojure.lang.IPersistentVector
+  (writer-m-add [c v] (conj c v))
+  (writer-m-combine [c1 c2] (vec (concat c1 c2)))
+
+  clojure.lang.IPersistentList
+  (writer-m-add [c v] (conj c v))
+  (writer-m-combine [c1 c2] (concat c1 c2))
+
+  clojure.lang.APersistentSet
+  (writer-m-add [c v] (conj c v))
+  (writer-m-combine [c1 c2] (clojure.set/union c1 c2))
+
+  java.lang.String
+  (writer-m-add [c v] (str c v))
+  (writer-m-combine [c1 c2] (str c1 c2)))
+
+(defn writer-m
+  "Monad describing computations that accumulate data on the side, e.g. for
    logging. The monadic values have the structure [value log]. Any of the
    accumulators from clojure.contrib.accumulators can be used for storing the
    log data. Its empty value is passed as a parameter."
-    [empty-accumulator]
-    (monad
-     [m-result  (fn m-result-writer [v]
-                  [v empty-accumulator])
-      m-bind    (fn m-bind-writer [mv f]
-                  (let [[v1 a1] mv
-                        [v2 a2] (f v1)]
-                    [v2 (clojure.contrib.accumulators/combine a1 a2)]))
-      ]))
+  [empty-accumulator]
+  (monad
+   [m-result  (fn m-result-writer [v]
+                [v empty-accumulator])
+    m-bind    (fn m-bind-writer [mv f]
+                (let [[v1 a1] mv
+                      [v2 a2] (f v1)]
+                  [v2 (writer-m-combine a1 a2)]))
+    ]))
 
-  (defmonadfn write [v]
-    (let [[_ a] (m-result nil)]
-      [nil (clojure.contrib.accumulators/add a v)]))
+(defmonadfn write [v]
+  (let [[_ a] (m-result nil)]
+    [nil (writer-m-add a v)]))
 
-  (defn listen [mv]
-    (let [[v a] mv] [[v a] a]))
+(defn listen [mv]
+  (let [[v a] mv] [[v a] a]))
 
-  (defn censor [f mv]
-    (let [[v a] mv] [v (f a)])))
+(defn censor [f mv]
+  (let [[v a] mv] [v (f a)]))
 
 ; Continuation monad
 

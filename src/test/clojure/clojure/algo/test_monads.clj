@@ -11,7 +11,7 @@
 (ns clojure.algo.test-monads
   (:use [clojure.test :only (deftest is are run-tests)]
 	[clojure.algo.monads
-	 :only (with-monad domonad m-lift m-seq m-chain
+	 :only (with-monad domonad m-lift m-seq m-chain writer-m write
 		sequence-m maybe-m state-m maybe-t sequence-t)]))
 
 (deftest sequence-monad
@@ -44,6 +44,36 @@
 	(m-plus m-zero (m-result 1) m-zero (m-result 2))
 	  (m-result 1)))))
 
+(deftest writer-monad
+  (is (= (domonad (writer-m "")
+                  [x (m-result 1)
+                   _ (write "first step\n")
+                   y (m-result 2)
+                   _ (write "second step\n")]
+                  (+ x y))
+         [3 "first step\nsecond step\n"]))
+  (is (= (domonad (writer-m [])
+                  [_ (write :a)
+                   a (m-result 1)
+                   _ (write :b)
+                   b (m-result 2)]
+                  (+ a b))
+         [3 [:a :b]]))
+  (is (= (domonad (writer-m (list))
+                  [_ (write :a)
+                   a (m-result 1)
+                   _ (write :b)
+                   b (m-result 2)]
+                  (+ a b))
+         [3 (list :a :b)]))
+  (is (= (domonad (writer-m #{})
+                  [_ (write :a)
+                   a (m-result 1)
+                   _ (write :a)
+                   b (m-result 2)]
+                  (+ a b))
+         [3 #{:a}])))
+
 (deftest seq-maybe-monad
   (with-monad (maybe-t sequence-m)
     (letfn [(pairs [xs] ((m-lift 2 #(list %1 %2)) xs xs))]
@@ -73,3 +103,4 @@
 		     (+ x y))]
 	     (f :state)))
 	(list [(list 11 21 12 22) :state]))))
+
