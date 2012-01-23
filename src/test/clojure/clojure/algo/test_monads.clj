@@ -10,9 +10,9 @@
 
 (ns clojure.algo.test-monads
   (:use [clojure.test :only (deftest is are run-tests)]
-	[clojure.algo.monads
-	 :only (with-monad domonad m-lift m-seq m-chain writer-m write
-		sequence-m maybe-m state-m maybe-t sequence-t)]))
+        [clojure.algo.monads
+         :only (with-monad domonad m-lift m-seq m-chain writer-m write
+                sequence-m maybe-m state-m maybe-t sequence-t)]))
 
 (deftest sequence-monad
   (with-monad sequence-m
@@ -36,13 +36,13 @@
           mdiv (fn [x y] (domonad [a x  b y  :when (not (zero? b))] (/ a b)))]
       (are [a b] (= a b)
         (m+ (m-result 1) (m-result 3))
-	  (m-result 4)
+          (m-result 4)
         (mdiv (m-result 1) (m-result 3))
-	  (m-result (/ 1 3))
+          (m-result (/ 1 3))
         (m+ 1 (mdiv (m-result 1) (m-result 0)))
-	  m-zero
-	(m-plus m-zero (m-result 1) m-zero (m-result 2))
-	  (m-result 1)))))
+          m-zero
+        (m-plus m-zero (m-result 1) m-zero (m-result 2))
+          (m-result 1)))))
 
 (deftest writer-monad
   (is (= (domonad (writer-m "")
@@ -86,21 +86,21 @@
 (deftest state-maybe-monad
   (with-monad (maybe-t state-m)
     (is (= (for [[a b c d] (list [1 2 3 4] [nil 2 3 4] [ 1 nil 3 4]
-				 [nil nil 3 4] [1 2 nil nil])]
-	     (let [f (domonad
-		       [x (m-plus (m-result a) (m-result b))
-			y (m-plus (m-result c) (m-result d))]
-		       (+ x y))]
-	       (f :state)))
-	   (list [4 :state] [5 :state] [4 :state] [nil :state] [nil :state])))))
+                                 [nil nil 3 4] [1 2 nil nil])]
+             (let [f (domonad
+                       [x (m-plus (m-result a) (m-result b))
+                        y (m-plus (m-result c) (m-result d))]
+                       (+ x y))]
+               (f :state)))
+           (list [4 :state] [5 :state] [4 :state] [nil :state] [nil :state])))))
 
 (deftest state-seq-monad
   (with-monad (sequence-t state-m)
     (is (= (let [[a b c d] [1 2 10 20]
-		 f (domonad
-		     [x (m-plus (m-result a) (m-result b))
-		      y (m-plus (m-result c) (m-result d))]
-		     (+ x y))]
-	     (f :state)))
-	(list [(list 11 21 12 22) :state]))))
+                 f (domonad
+                     [x (m-plus (m-result a) (m-result b))
+                      y (m-plus (m-result c) (m-result d))]
+                     (+ x y))]
+             (f :state)))
+        (list [(list 11 21 12 22) :state]))))
 

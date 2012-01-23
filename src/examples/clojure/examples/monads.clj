@@ -12,13 +12,13 @@
      :doc "Examples for using monads"}
   examples.monads
   (:use [clojure.algo.monads
-	 :only (domonad with-monad m-lift m-seq m-reduce m-when
-		sequence-m
-		maybe-m
-		state-m fetch-state set-state 
-		writer-m write
-		cont-m run-cont call-cc
-		maybe-t)]))
+         :only (domonad with-monad m-lift m-seq m-reduce m-when
+                sequence-m
+                maybe-m
+                state-m fetch-state set-state 
+                writer-m write
+                cont-m run-cont call-cc
+                maybe-t)]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -58,7 +58,7 @@
    [x  (range 5)
     y  (range (+ 1 x))
     :let [sum (+ x y)
-	  diff (- x y)]
+          diff (- x y)]
     :when  (= sum 2)]
    (list diff))
 
@@ -128,8 +128,8 @@
 (with-monad maybe-m
    (defn some-function [x y]
       (let [one (m-result 1)]
- 	   (safe-div one (m+ (safe-div one (m-result x))
-			     (safe-div one (m-result y)))))))
+           (safe-div one (m+ (safe-div one (m-result x))
+                             (safe-div one (m-result y)))))))
 
 ; An example that doesn't fail:
 (some-function 2 3)
@@ -163,8 +163,8 @@
 ;  monad item.
 (defn rng [seed]
   (let [m      259200
-	value  (/ (float seed) (float m))
-	next   (rem (+ 54773 (* 7141 seed)) m)]
+        value  (/ (float seed) (float m))
+        next   (rem (+ 54773 (* 7141 seed)) m)]
     [value next]))
 
 ; We define a convenience function that creates an infinite lazy seq
@@ -179,7 +179,7 @@
 (defn mean [xs]  (/ (sum xs) (count xs)))
 (defn variance [xs]
   (let [m (mean xs)
-	sq #(* % %)]
+        sq #(* % %)]
     (mean (for [x xs] (sq (- x m))))))
 
 ; rng implements a uniform distribution in the interval [0., 1.), so
@@ -293,7 +293,7 @@
   (if (< n 2)
     n
     (let [n1 (dec n)
-	  n2 (dec n1)]
+          n2 (dec n1)]
       (+ (fib n1) (fib n2)))))
 
 ; First we rewrite it to make every computational step explicit
@@ -303,9 +303,9 @@
   (if (< n 2)
     n
     (let [n1 (dec n)
-	  n2 (dec n1)
-	  f1 (fib n1)
-	  f2 (fib n2)]
+          n2 (dec n1)
+          f1 (fib n1)
+          f2 (fib n2)]
       (+ f1 f2))))
 
 ; Next, we replace the let by a domonad in a writer monad that uses a

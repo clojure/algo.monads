@@ -11,11 +11,11 @@
 (ns
   ^{:author "Konrad Hinsen"
      :see-also [["http://onclojure.com/2009/03/05/a-monad-tutorial-for-clojure-programmers-part-1/" "Monad tutorial part 1"]
-		["http://onclojure.com/2009/03/06/a-monad-tutorial-for-clojure-programmers-part-2/" "Monad tutorial part 2"]
-		["http://onclojure.com/2009/03/23/a-monad-tutorial-for-clojure-programmers-part-3/" "Monad tutorial part 3"]
-		["http://onclojure.com/2009/04/24/a-monad-tutorial-for-clojure-programmers-part-4/" "Monad tutorial part 4"]
-		["http://intensivesystems.net/tutorials/monads_101.html" "Monads in Clojure part 1"]
-		["http://intensivesystems.net/tutorials/monads_201.html" "Monads in Clojure part 2"]]
+                ["http://onclojure.com/2009/03/06/a-monad-tutorial-for-clojure-programmers-part-2/" "Monad tutorial part 2"]
+                ["http://onclojure.com/2009/03/23/a-monad-tutorial-for-clojure-programmers-part-3/" "Monad tutorial part 3"]
+                ["http://onclojure.com/2009/04/24/a-monad-tutorial-for-clojure-programmers-part-4/" "Monad tutorial part 4"]
+                ["http://intensivesystems.net/tutorials/monads_101.html" "Monads in Clojure part 1"]
+                ["http://intensivesystems.net/tutorials/monads_201.html" "Monads in Clojure part 2"]]
      :doc "This library contains the most commonly used monads as well
            as macros for defining and using monads and useful monadic
            functions."}
@@ -36,10 +36,10 @@
     m-result (required) and m-zero and m-plus (optional)."
    [operations]
    `(let [~'m-bind   ::undefined
-	  ~'m-result ::undefined
-	  ~'m-zero   ::undefined
-	  ~'m-plus   ::undefined
-	  ~@operations]
+          ~'m-result ::undefined
+          ~'m-zero   ::undefined
+          ~'m-plus   ::undefined
+          ~@operations]
       {:m-result ~'m-result
        :m-bind ~'m-bind 
        :m-zero ~'m-zero
@@ -70,8 +70,8 @@
   [mexpr step]
   (let [[bform expr] step]
     (cond (identical? bform :when)  `(if ~expr ~mexpr ~'m-zero)
-	  (identical? bform :let)   `(let ~expr ~mexpr)
-	  :else (list 'm-bind expr (list 'fn [bform] mexpr)))))
+          (identical? bform :let)   `(let ~expr ~mexpr)
+          :else (list 'm-bind expr (list 'fn [bform] mexpr)))))
 
 (defn- monad-expr
    "Transforms a monad comprehension, consisting of a list of steps
@@ -83,18 +83,18 @@
    (when (odd? (count steps))
      (throw (Exception. "Odd number of elements in monad comprehension steps")))
    (let [rsteps (reverse (partition 2 steps))
-	 [lr ls] (first rsteps)]
+         [lr ls] (first rsteps)]
      (if (= lr expr)
        ; Optimization: if the result expression is equal to the result
        ; of the last computation step, we can eliminate an m-bind to
        ; m-result.
        (reduce add-monad-step
-	       ls
-	       (rest rsteps))
+               ls
+               (rest rsteps))
        ; The general case.
        (reduce add-monad-step
-	       (list 'm-result expr)
-	       rsteps))))
+               (list 'm-result expr)
+               rsteps))))
 
 (defmacro with-monad
    "Evaluates an expression after replacing the keywords defining the
@@ -102,10 +102,10 @@
     in the monad definition given by name."
    [monad & exprs]
    `(let [name#      ~monad
-	  ~'m-bind   (:m-bind name#)
-	  ~'m-result (:m-result name#)
-	  ~'m-zero   (:m-zero name#)
-	  ~'m-plus   (:m-plus name#)]
+          ~'m-bind   (:m-bind name#)
+          ~'m-result (:m-result name#)
+          ~'m-zero   (:m-zero name#)
+          ~'m-plus   (:m-plus name#)]
       (with-symbol-macros ~@exprs)))
 
 (defmacro domonad
@@ -135,29 +135,29 @@
   "Like defn, but for functions that use monad operations and are used inside
    a with-monad block."
   {:arglists '([name docstring? attr-map? args expr]
-	       [name docstring? attr-map? (args expr) ...])}
+               [name docstring? attr-map? (args expr) ...])}
   [name & options]
   (let [[name options]  (name-with-attributes name options)
-	fn-name (symbol (str *ns*) (format "m+%s+m" (str name)))
-	make-fn-body    (fn [args expr]
-			  (list (vec (concat ['m-bind 'm-result
-					      'm-zero 'm-plus] args))
-				(list `with-symbol-macros expr)))]
+        fn-name (symbol (str *ns*) (format "m+%s+m" (str name)))
+        make-fn-body    (fn [args expr]
+                          (list (vec (concat ['m-bind 'm-result
+                                              'm-zero 'm-plus] args))
+                                (list `with-symbol-macros expr)))]
     (if (list? (first options))
       ; multiple arities
       (let [arglists        (map first options)
-	    exprs           (map second options)
-	    ]
-	`(do
-	   (defsymbolmacro ~name (partial ~fn-name ~'m-bind ~'m-result 
+            exprs           (map second options)
+            ]
+        `(do
+           (defsymbolmacro ~name (partial ~fn-name ~'m-bind ~'m-result 
                                                    ~'m-zero ~'m-plus))
-	   (defn ~fn-name ~@(map make-fn-body arglists exprs))))
+           (defn ~fn-name ~@(map make-fn-body arglists exprs))))
       ; single arity
       (let [[args expr] options]
-	`(do
-	   (defsymbolmacro ~name (partial ~fn-name ~'m-bind ~'m-result 
+        `(do
+           (defsymbolmacro ~name (partial ~fn-name ~'m-bind ~'m-result 
                                                    ~'m-zero ~'m-plus))
-	   (defn ~fn-name ~@(make-fn-body args expr)))))))
+           (defn ~fn-name ~@(make-fn-body args expr)))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -179,8 +179,8 @@
   monadic arguments returning a monadic value."
   [n f]
   (let [expr (take n (repeatedly #(gensym "x_")))
-	vars (vec (take n (repeatedly #(gensym "mv_"))))
-	steps (vec (interleave expr vars))]
+        vars (vec (take n (repeatedly #(gensym "mv_"))))
+        steps (vec (interleave expr vars))]
     (list `fn vars (monad-expr steps (cons f expr)))))
 
 (defmonadfn m-join
@@ -199,11 +199,11 @@
    basic values contained in them."
   [ms]
   (reduce (fn [q p]
-	    (m-bind p (fn [x]
-			(m-bind q (fn [y]
-				    (m-result (cons x y)))) )))
-	  (m-result '())
-	  (reverse ms)))
+            (m-bind p (fn [x]
+                        (m-bind q (fn [y]
+                                    (m-result (cons x y)))) )))
+          (m-result '())
+          (reverse ms)))
 
 (defmonadfn m-map
   "'Executes' the sequence of monadic values resulting from mapping
@@ -218,9 +218,9 @@
    (fn [x] (domonad [r1 (step1 x) r2 (step2 r1)] r2))."
   [steps]
   (reduce (fn m-chain-link [chain-expr step]
-	    (fn [v] (m-bind (chain-expr v) step)))
-	  m-result
-	  steps))
+            (fn [v] (m-bind (chain-expr v) step)))
+          m-result
+          steps))
 
 (defmonadfn m-reduce
   "Return the reduction of (m-lift 2 f) over the list of monadic values mvs
@@ -232,7 +232,7 @@
        (reduce m-f mvs))))
   ([f val mvs]
    (let [m-f    (m-lift 2 f)
-	 m-val  (m-result val)]
+         m-val  (m-result val)]
      (reduce m-f m-val mvs))))
 
 (defmonadfn m-until
@@ -286,7 +286,7 @@
     transformers, and for code that is parameterized with a monad."
   [m-result identity
    m-bind   (fn m-result-id [mv f]
-	      (f mv))
+              (f mv))
   ])
 
 ; Maybe monad
@@ -299,7 +299,7 @@
     m-bind   (fn m-bind-maybe [mv f]
                (if (nil? mv) nil (f mv)))
     m-plus   (fn m-plus-maybe [& mvs]
-	       (first (drop-while nil? mvs)))
+               (first (drop-while nil? mvs)))
     ])
 
 ; Sequence monad (called "list monad" in Haskell)
@@ -308,7 +308,7 @@
     that can yield multiple values. Any object implementing the seq
     protocol can be used as a monadic value."
    [m-result (fn m-result-sequence [v]
-	       (list v))
+               (list v))
     m-bind   (fn m-bind-sequence [mv f]
                (flatten* (map f mv)))
     m-zero   (list)
@@ -321,7 +321,7 @@
    "Monad describing multi-valued computations, like sequence-m,
     but returning sets of results instead of sequences of results."
    [m-result (fn m-result-set [v]
-	       #{v})
+               #{v})
     m-bind   (fn m-bind-set [mv f]
                (apply clojure.set/union (map f mv)))
     m-zero   #{}
@@ -334,11 +334,11 @@
    "Monad describing stateful computations. The monadic values have the
     structure (fn [old-state] [result new-state])."
    [m-result  (fn m-result-state [v]
-	        (fn [s] [v s]))
+                (fn [s] [v s]))
     m-bind    (fn m-bind-state [mv f]
-	        (fn [s]
-		  (let [[v ss] (mv s)]
-		    ((f v) ss))))
+                (fn [s]
+                  (let [[v ss] (mv s)]
+                    ((f v) ss))))
    ])
 
 (defn update-state
@@ -374,7 +374,7 @@
   [key f]
   (fn [s]
     (let [old-val (get s key)
-	  new-s   (assoc s key (f old-val))]
+          new-s   (assoc s key (f old-val))]
       [old-val new-s])))
 
 (defn set-val
@@ -391,8 +391,8 @@
   [key statement]
   (fn [s]
     (let [substate (get s key nil)
-	  [result new-substate] (statement substate)
-	  new-state (assoc s key new-substate)]
+          [result new-substate] (statement substate)
+          new-state (assoc s key new-substate)]
       [result new-state])))
 
 (defn state-m-until
@@ -400,10 +400,10 @@
    replaces recursion by a loop."
   [p f x]
   (letfn [(until [p f x s]
-	    (if (p x)
-	      [x s]
-	      (let [[x s] ((f x) s)]
-		(recur p f x s))))]
+            (if (p x)
+              [x s]
+              (let [[x s] ((f x) s)]
+                (recur p f x s))))]
     (fn [s] (until p f x s))))
 
 ; Writer monad
@@ -464,10 +464,10 @@
    values are functions that are called with a single argument representing
    the continuation of the computation, to which they pass their result."
   [m-result   (fn m-result-cont [v]
-		(fn [c] (c v)))
+                (fn [c] (c v)))
    m-bind     (fn m-bind-cont [mv f]
-		(fn [c]
-		  (mv (fn [v] ((f v) c)))))
+                (fn [c]
+                  (mv (fn [v] ((f v) c)))))
    ])
 
 (defn run-cont
@@ -483,7 +483,7 @@
   [f]
   (fn [c]
     (let [cc (fn cc [a] (fn [_] (c a)))
-	  rc (f cc)]
+          rc (f cc)]
       (rc c))))
 
 
@@ -499,20 +499,20 @@
     from the base monad or from the transformer."
   [base which-m-plus operations]
   `(let [which-m-plus# (cond (= ~which-m-plus :m-plus-default)
-			       (if (= ::undefined (with-monad ~base ~'m-plus))
-			         :m-plus-from-transformer
-			         :m-plus-from-base)
-			     (or (= ~which-m-plus :m-plus-from-base)
-				 (= ~which-m-plus :m-plus-from-transformer))
-			       ~which-m-plus
-			     :else
-			       (throw (java.lang.IllegalArgumentException.
-				       "undefined m-plus choice")))
-	 combined-monad# (monad ~operations)]
+                               (if (= ::undefined (with-monad ~base ~'m-plus))
+                                 :m-plus-from-transformer
+                                 :m-plus-from-base)
+                             (or (= ~which-m-plus :m-plus-from-base)
+                                 (= ~which-m-plus :m-plus-from-transformer))
+                               ~which-m-plus
+                             :else
+                               (throw (java.lang.IllegalArgumentException.
+                                       "undefined m-plus choice")))
+         combined-monad# (monad ~operations)]
     (if (= which-m-plus# :m-plus-from-base)
       (assoc combined-monad#
-	:m-zero (with-monad ~base ~'m-zero)
-	:m-plus (with-monad ~base ~'m-plus))
+        :m-zero (with-monad ~base ~'m-zero)
+        :m-plus (with-monad ~base ~'m-plus))
       combined-monad#)))
        
 (defn maybe-t
@@ -529,22 +529,22 @@
    (monad-transformer m which-m-plus
      [m-result (with-monad m m-result)
       m-bind   (with-monad m
-		 (fn m-bind-maybe-t [mv f]
-		   (m-bind mv
-			   (fn [x]
-			     (if (identical? x nothing)
-			       (m-result nothing)
-			       (f x))))))
+                 (fn m-bind-maybe-t [mv f]
+                   (m-bind mv
+                           (fn [x]
+                             (if (identical? x nothing)
+                               (m-result nothing)
+                               (f x))))))
       m-zero   (with-monad m (m-result nothing))
       m-plus   (with-monad m
-	         (fn m-plus-maybe-t [& mvs]
-		   (if (empty? mvs)
-		     (m-result nothing)
-		     (m-bind (first mvs)
-			     (fn [v]
-			       (if (= v nothing)
-				 (apply m-plus-maybe-t (rest mvs))
-				 (m-result v)))))))
+                 (fn m-plus-maybe-t [& mvs]
+                   (if (empty? mvs)
+                     (m-result nothing)
+                     (m-bind (first mvs)
+                             (fn [v]
+                               (if (= v nothing)
+                                 (apply m-plus-maybe-t (rest mvs))
+                                 (m-result v)))))))
       ])))
 
 (defn sequence-t
@@ -559,18 +559,18 @@
   ([m which-m-plus]
    (monad-transformer m which-m-plus
      [m-result (with-monad m
-	         (fn m-result-sequence-t [v]
-		   (m-result (list v))))
+                 (fn m-result-sequence-t [v]
+                   (m-result (list v))))
       m-bind   (with-monad m
-		 (fn m-bind-sequence-t [mv f]
-		   (m-bind mv
-			   (fn [xs]
-			     (m-fmap flatten*
-				     (m-map f xs))))))
+                 (fn m-bind-sequence-t [mv f]
+                   (m-bind mv
+                           (fn [xs]
+                             (m-fmap flatten*
+                                     (m-map f xs))))))
       m-zero   (with-monad m (m-result (list)))
       m-plus   (with-monad m
                  (fn m-plus-sequence-t [& mvs]
-		   (m-reduce concat (list) mvs)))
+                   (m-reduce concat (list) mvs)))
       ])))
 
 ;; Contributed by Jim Duey
@@ -579,10 +579,10 @@
   computations that have the base monad type as their result."
   [m]
   (monad [m-result (with-monad m
-		     (fn m-result-state-t [v]
+                     (fn m-result-state-t [v]
                        (fn [s]
-			 (m-result [v s]))))
-	  m-bind   (with-monad m
+                         (m-result [v s]))))
+          m-bind   (with-monad m
                      (fn m-bind-state-t [stm f]
                        (fn [s]
                          (m-bind (stm s)
@@ -590,13 +590,13 @@
                                    ((f v) ss))))))
           m-zero   (with-monad m
                      (if (= ::undefined m-zero)
-		       ::undefined
-		       (fn [s]
-			 m-zero)))
+                       ::undefined
+                       (fn [s]
+                         m-zero)))
           m-plus   (with-monad m
                      (if (= ::undefined m-plus)
-		       ::undefined
-		       (fn [& stms]
-			 (fn [s]
-			   (apply m-plus (map #(% s) stms))))))
+                       ::undefined
+                       (fn [& stms]
+                         (fn [s]
+                           (apply m-plus (map #(% s) stms))))))
           ]))
