@@ -29,8 +29,28 @@
                       [a b])]
   (is (= monad-value [5 6]))))
 
+(deftest domonad-nested-if-then
+  (let [monad-value (domonad maybe-m
+                      [ a 5
+                       :if (= a 5)
+                        :then [
+                          b 6
+                          :if (= b 6)
+                          :then [
+                            c 7
+                          ]
+                          :else [
+                            c nil
+                          ]  
+                        ]
+                        :else [
+                          b nil
+                          c nil
+                        ]]
+                      [a b c])]
+  (is (= monad-value [5 6 7]))))
 
-(deftest domonad-if-else
+(deftest domonad-if-then-with-when
   (let [monad-value (domonad maybe-m
                       [ a 5
                         :when (= a 5)
