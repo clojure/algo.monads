@@ -11,8 +11,8 @@
 (ns clojure.algo.test-monads
   (:use [clojure.test :only (deftest is are run-tests)]
         [clojure.algo.monads
-          :only (with-monad domonad m-lift m-seq m-chain writer-m write
-                 sequence-m maybe-m state-m maybe-t sequence-t)]))
+         :only (with-monad domonad m-lift m-seq m-chain writer-m write
+                sequence-m maybe-m state-m maybe-t sequence-t)]))
 
 
 (deftest domonad-if-then

@@ -31,31 +31,31 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmacro monad
-   "Define a monad by defining the monad operations. The definitions
-    are written like bindings to the monad operations m-bind and
-    m-result (required) and m-zero and m-plus (optional)."
-   [operations]
-   `(let [~'m-bind   ::undefined
-          ~'m-result ::undefined
-          ~'m-zero   ::undefined
-          ~'m-plus   ::undefined
-          ~@operations]
-      {:m-result ~'m-result
-       :m-bind ~'m-bind 
-       :m-zero ~'m-zero
-       :m-plus ~'m-plus}))
+  "Define a monad by defining the monad operations. The definitions
+   are written like bindings to the monad operations m-bind and
+   m-result (required) and m-zero and m-plus (optional)."
+  [operations]
+  `(let [~'m-bind   ::undefined
+         ~'m-result ::undefined
+         ~'m-zero   ::undefined
+         ~'m-plus   ::undefined
+         ~@operations]
+     {:m-result ~'m-result
+      :m-bind ~'m-bind 
+      :m-zero ~'m-zero
+      :m-plus ~'m-plus}))
 
 (defmacro defmonad
- "Define a named monad by defining the monad operations. The definitions
-  are written like bindings to the monad operations m-bind and
-  m-result (required) and m-zero and m-plus (optional)."
+  "Define a named monad by defining the monad operations. The definitions
+   are written like bindings to the monad operations m-bind and
+   m-result (required) and m-zero and m-plus (optional)."
 
- ([name doc-string operations]
-  (let [doc-name (with-meta name {:doc doc-string})]
-    `(defmonad ~doc-name ~operations)))
+  ([name doc-string operations]
+   (let [doc-name (with-meta name {:doc doc-string})]
+     `(defmonad ~doc-name ~operations)))
 
- ([name operations]
-  `(def ~name (monad ~operations))))
+  ([name operations]
+   `(def ~name (monad ~operations))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -136,28 +136,28 @@
         (list 'm-bind expr (list 'fn [bform] mexpr)))))
 
 (defn- monad-expr
-   "Transforms a monad comprehension, consisting of a list of steps
-    and an expression defining the final value, into an expression
-    chaining together the steps using :bind and returning the final value
-    using :result. The steps are given as a vector of
-    binding-variable/monadic-expression pairs."
-   [steps expr]
-   (when (odd? (count steps))
-     (throw (Exception. "Odd number of elements in monad comprehension steps")))
+  "Transforms a monad comprehension, consisting of a list of steps
+   and an expression defining the final value, into an expression
+   chaining together the steps using :bind and returning the final value
+   using :result. The steps are given as a vector of
+   binding-variable/monadic-expression pairs."
+  [steps expr]
+  (when (odd? (count steps))
+    (throw (Exception. "Odd number of elements in monad comprehension steps")))
 
-   (let [rsteps  (prepare-monadic-steps steps)
-         [[lr ls] & _] (first rsteps)]
-     (if (= lr expr)
-       ; Optimization: if the result expression is equal to the result
-       ; of the last computation step, we can eliminate an m-bind to
-       ; m-result.
-       (reduce add-monad-step
-         ls
-         (rest rsteps))
-       ; The general case.
-       (reduce add-monad-step
-         (list 'm-result expr)
-         rsteps))))
+  (let [rsteps  (prepare-monadic-steps steps)
+        [[lr ls] & _] (first rsteps)]
+    (if (= lr expr)
+      ; Optimization: if the result expression is equal to the result
+      ; of the last computation step, we can eliminate an m-bind to
+      ; m-result.
+      (reduce add-monad-step
+        ls
+        (rest rsteps))
+      ; The general case.
+      (reduce add-monad-step
+        (list 'm-result expr)
+        rsteps))))
 
 (defmacro with-monad
   "Evaluates an expression after replacing the keywords defining the
@@ -557,9 +557,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmacro monad-transformer
-   "Define a monad transforer in terms of the monad operations and the base
-    monad. The argument which-m-plus chooses if m-zero and m-plus are taken
-    from the base monad or from the transformer."
+  "Define a monad transforer in terms of the monad operations and the base
+   monad. The argument which-m-plus chooses if m-zero and m-plus are taken
+   from the base monad or from the transformer."
   [base which-m-plus operations]
   `(let [which-m-plus# (cond (= ~which-m-plus :m-plus-default)
                                (if (= ::undefined (with-monad ~base ~'m-plus))
