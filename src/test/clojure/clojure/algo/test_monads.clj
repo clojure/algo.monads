@@ -11,8 +11,54 @@
 (ns clojure.algo.test-monads
   (:use [clojure.test :only (deftest is are run-tests)]
         [clojure.algo.monads
-         :only (with-monad domonad m-lift m-seq m-chain writer-m write
-                sequence-m maybe-m state-m maybe-t sequence-t)]))
+          :only (with-monad domonad m-lift m-seq m-chain writer-m write
+                 sequence-m maybe-m state-m maybe-t sequence-t)]))
+
+
+(deftest domonad-if-then
+  (let [monad-value (domonad maybe-m
+                      [ a 5
+                        :let [c 7]
+                        :if (and (= a 5) (= c 7))
+                        :then [
+                          b 6
+                        ]
+                        :else [
+                          b nil
+                        ]]
+                      [a b])]
+  (is (= monad-value [5 6]))))
+
+
+(deftest domonad-if-else
+  (let [monad-value (domonad maybe-m
+                      [ a 5
+                        :when (= a 5)
+                        :if (= a 1)
+                        :then [
+                          b 6]
+                        :else [
+                          b nil]]
+                      [a b])]
+  (is (= monad-value nil))))
+
+(deftest domonad-cond
+  (let [monad-value (domonad maybe-m
+                      [ a 5
+                        :when (= a 5)
+                        :cond
+                          [(< a 1)
+                            [result "less than one"]
+                           (< a 3)
+                            [result "less than three"]
+                           (< a 6)
+                            [result "less than six"]
+                           :else
+                            [result "arbitrary number"]]
+                        b 7
+                        :let [some-val 12345]]
+                      [result b some-val])]
+  (is (= monad-value ["less than six" 7 12345]))))
 
 (deftest sequence-monad
   (with-monad sequence-m
