@@ -648,7 +648,7 @@
           m-bind   (with-monad m
                      (fn m-bind-state-t [stm f]
                        (fn [s]
-                         (m-bind (m-result (stm s))
+                         (m-bind (stm s)
                                  (fn [[v ss]]
                                    ((f v) ss))))))
           m-zero   (with-monad m
