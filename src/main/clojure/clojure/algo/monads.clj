@@ -267,6 +267,16 @@
           (m-result '())
           (reverse ms)))
 
+(defmonadfn m-lift-fn
+  "A purely functional replacement for m-lift
+  ((m-lift 2 +) (m-result 5) (m-result 6)) should be equal to
+  (m-lift-fn + (m-result 5) (m-result-6))
+  Note that this is untested"
+  [f & args]
+    (m-bind
+      (m-seq args)
+      #(m-result (apply f %))))
+
 (defmonadfn m-map
   "'Executes' the sequence of monadic values resulting from mapping
    f onto the values xs. f must return a monadic value."
