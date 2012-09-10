@@ -425,9 +425,7 @@
   "Return a state-monad function that assumes the state to be a map and
    returns the value corresponding to the given key. The state is not modified."
   [key]
-  (domonad state-m
-    [s (fetch-state)]
-    (key s)))
+  (fn [s] [(get s key ) s]))
 
 (defn update-val
   "Return a state-monad function that assumes the state to be a map and
