@@ -12,7 +12,7 @@
   (:use [clojure.test :only (deftest is are run-tests)]
         [clojure.algo.monads
          :only (with-monad domonad m-lift m-seq m-chain writer-m write
-                sequence-m maybe-m state-m maybe-t sequence-t)]))
+                sequence-m maybe-m state-m maybe-t sequence-t m-lift-fn)]))
 
 
 (deftest domonad-if-then
@@ -88,6 +88,22 @@
       (domonad [x (range 5) y (range (+ 1 x)) :when  (= (+ x y) 2)] (list x y))
         '((1 1) (2 0))
       ((m-lift 2 #(list %1 %2)) (range 3) (range 2))
+        '((0 0) (0 1) (1 0) (1 1) (2 0) (2 1))
+      (m-seq (replicate 3 (range 2)))
+        '((0 0 0) (0 0 1) (0 1 0) (0 1 1) (1 0 0) (1 0 1) (1 1 0) (1 1 1))
+      ((m-chain (replicate 3 range)) 5)
+        '(0 0 0 1 0 0 1 0 1 2)
+      (m-plus (range 3) (range 2))
+        '(0 1 2 0 1))))
+        
+(deftest sequence-monad-using-m-lift-fn
+  (with-monad sequence-m
+    (are [a b] (= a b)
+      (domonad [x (range 3) y (range 2)] (+ x y))
+        '(0 1 1 2 2 3)
+      (domonad [x (range 5) y (range (+ 1 x)) :when  (= (+ x y) 2)] (list x y))
+        '((1 1) (2 0))
+      ((m-lift-fn #(list %1 %2)) (range 3) (range 2))
         '((0 0) (0 1) (1 0) (1 1) (2 0) (2 1))
       (m-seq (replicate 3 (range 2)))
         '((0 0 0) (0 0 1) (0 1 0) (0 1 1) (1 0 0) (1 0 1) (1 1 0) (1 1 1))
