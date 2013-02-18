@@ -27,7 +27,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>tools.macro</artifactId>
-      <version>0.1.0</version>
+      <version>[0.1.0,)</version>
     </dependency>
   </dependencies>
 
