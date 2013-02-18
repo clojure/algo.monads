@@ -17,6 +17,27 @@ See the examples and the on-line monad tutorials:
   * [Monads in Clojure part 2](http://intensivesystems.net/tutorials/monads_201.html)
 
 
+## Releases and dependency information
+
+Latest stable release: 0.1.4
+
+* [All released versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22algo.monads%22)
+
+* [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~algo.monads~~~)
+
+[Leiningen](http://github.com/technomancy/leiningen/) dependency information:
+
+    [org.clojure/algo.monads "0.1.4"]
+
+[Maven](http://maven.apache.org/) dependency information:
+
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>algo.monads</artifactId>
+      <version>0.1.4</version>
+    </dependency>
+
+
 ## License
 
 Copyright (c) Rich Hickey and contributors. All rights reserved.
