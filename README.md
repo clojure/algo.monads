@@ -13,8 +13,8 @@ See the examples and the on-line monad tutorials:
   * [Monad tutorial part 4](http://onclojure.com/2009/04/24/a-monad-tutorial-for-clojure-programmers-part-4/)
 
 * Jim Duey's tutorial:
-  * [Monads in Clojure part 1](http://intensivesystems.net/tutorials/monads_101.html)
-  * [Monads in Clojure part 2](http://intensivesystems.net/tutorials/monads_201.html)
+  * [Monads in Clojure part 1](http://www.intensivesystems.net/tutorials/monads_101.html)
+  * [Monads in Clojure part 2](http://www.intensivesystems.net/tutorials/monads_201.html)
 
 
 ## Releases and dependency information
