@@ -276,7 +276,7 @@
 (defmonadfn m-chain
   "Chains together monadic computation steps that are each functions
    of one parameter. Each step is called with the result of the previous
-   step as its argument. (m-chain (step1 step2)) is equivalent to
+   step as its argument. (m-chain [step1 step2]) is equivalent to
    (fn [x] (domonad [r1 (step1 x) r2 (step2 r1)] r2))."
   [steps]
   (reduce (fn m-chain-link [chain-expr step]
