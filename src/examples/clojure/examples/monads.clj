@@ -82,7 +82,7 @@
 ; This definition suggests a generalization:
 (with-monad sequence-m
    (defn ntuples [n xs]
-      (m-seq (replicate n xs))))
+      (m-seq (repeat n xs))))
 
 (ntuples 2 (range 5))
 (ntuples 3 (range 5))
@@ -222,14 +222,14 @@
 ; of + to be lifted to the state monad:
 (def gaussian2
    (domonad state-m
-      [sum12 (reduce (m-lift 2 +) (replicate 12 rng))]
+      [sum12 (reduce (m-lift 2 +) (repeat 12 rng))]
       (- sum12 6.)))
 
 ; Such a reduction is often quite useful, so there's m-reduce predefined
 ; to simplify it:
 (def gaussian2
    (domonad state-m
-      [sum12 (m-reduce + (replicate 12 rng))]
+      [sum12 (m-reduce + (repeat 12 rng))]
       (- sum12 6.)))
 
 ; The statistics should be strictly the same as above, as long as
@@ -242,7 +242,7 @@
 (with-monad state-m
    (def gaussian3
         ((m-lift 1 #(- % 6.))
-           (m-reduce + (replicate 12 rng)))))
+           (m-reduce + (repeat 12 rng)))))
 
 ; Again, the statistics are the same:
 (mean (take 1000 (value-seq gaussian3 1)))
