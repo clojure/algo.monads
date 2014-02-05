@@ -34,10 +34,10 @@
    are written like bindings to the monad operations m-bind and
    m-result (required) and m-zero and m-plus (optional)."
   [operations]
-  `(let [~'m-bind   ::undefined
-         ~'m-result ::undefined
-         ~'m-zero   ::undefined
-         ~'m-plus   ::undefined
+  `(let [~'m-bind   ::this-monad-does-not-define-m-bind
+         ~'m-result ::this-monad-does-not-define-m-result
+         ~'m-zero   ::this-monad-does-not-define-m-zero
+         ~'m-plus   ::this-monad-does-not-define-m-plus
          ~@operations]
      {:m-result ~'m-result
       :m-bind ~'m-bind 
@@ -586,7 +586,8 @@
    from the base monad or from the transformer."
   [base which-m-plus operations]
   `(let [which-m-plus# (cond (= ~which-m-plus :m-plus-default)
-                               (if (= ::undefined (with-monad ~base ~'m-plus))
+                             (if (= ::this-monad-does-not-define-m-plus
+                                    (with-monad ~base ~'m-plus))
                                  :m-plus-from-transformer
                                  :m-plus-from-base)
                              (or (= ~which-m-plus :m-plus-from-base)
@@ -676,13 +677,13 @@
                                  (fn [[v ss]]
                                    ((f v) ss))))))
           m-zero   (with-monad m
-                     (if (= ::undefined m-zero)
-                       ::undefined
+                     (if (= ::this-monad-does-not-define-m-zero m-zero)
+                       ::this-monad-does-not-define-m-zero
                        (fn [s]
                          m-zero)))
           m-plus   (with-monad m
-                     (if (= ::undefined m-plus)
-                       ::undefined
+                     (if (= ::this-monad-does-not-define-m-plus m-plus)
+                       ::this-monad-does-not-define-m-plus
                        (fn [& stms]
                          (fn [s]
                            (apply m-plus (map #(% s) stms))))))
