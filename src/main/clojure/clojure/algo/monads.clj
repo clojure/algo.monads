@@ -482,7 +482,7 @@
 
   clojure.lang.IPersistentList
   (writer-m-add [c v] (conj c v))
-  (writer-m-combine [c1 c2] (concat c1 c2))
+  (writer-m-combine [c1 c2] (apply list (concat c1 c2)))
 
   clojure.lang.APersistentSet
   (writer-m-add [c v] (conj c v))

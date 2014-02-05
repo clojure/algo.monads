@@ -126,6 +126,13 @@
                    b (m-result 2)]
                   (+ a b))
          [3 [:a :b]]))
+  (is (= (domonad (writer-m ())
+                  [_ (write :a)
+                   a (m-result 1)
+                   _ (write :b)
+                   b (m-result 2)]
+                  (+ a b))
+         [3 '(:a :b)]))
   (is (= (domonad (writer-m (list))
                   [_ (write :a)
                    a (m-result 1)
@@ -139,7 +146,14 @@
                    _ (write :a)
                    b (m-result 2)]
                   (+ a b))
-         [3 #{:a}])))
+         [3 #{:a}]))
+  (is (= (domonad (writer-m ())
+                  [_ (domonad
+                      [_ (write "foo")]
+                      nil)
+                   _ (write "bar")]
+                  1)
+         [1 '("foo" "bar")])))
 
 (deftest reader-monad
   (let [monad-value (domonad reader-m
