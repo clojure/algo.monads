@@ -12,7 +12,8 @@
   (:use [clojure.test :only (deftest is are run-tests)]
         [clojure.algo.monads
          :only (with-monad domonad m-lift m-seq m-chain writer-m write
-                sequence-m maybe-m state-m maybe-t sequence-t)]))
+                 sequence-m maybe-m state-m maybe-t sequence-t
+                 reader-m ask asks local)]))
 
 
 (deftest domonad-if-then
@@ -140,6 +141,49 @@
                   (+ a b))
          [3 #{:a}])))
 
+(deftest reader-monad
+  (let [monad-value (domonad reader-m
+                             [x (asks :number)]
+                             (* x 2))]
+    (is (= (monad-value {:number 3})
+           6)))
+
+  (let [monad-value (domonad reader-m
+                             [env (ask)]
+                             env)]
+    (is (= (monad-value "env")
+           "env")))
+
+  (let [monad-value (domonad reader-m
+                             [numbers (ask)
+                              sum  (m-result (reduce + numbers))
+                              mean (m-result (/ sum (count numbers)))]
+                             mean)]
+    (is (= (monad-value (range 1 10))
+           5)))
+
+  (let [monad-value (domonad reader-m
+                             [a (ask)
+                              b (local inc (ask))]
+                             (* a b))]
+    (is (= (monad-value 10)
+           110)))
+
+
+  (let [mult-a-b (fn []
+                   (domonad reader-m
+                            [a (asks :a)
+                             b (asks :b)]
+                            (* a b)))
+        monad-value (domonad reader-m
+                             [a  (asks :a)
+                              b  (asks :b)
+                              a' (local #(update-in % [:a] inc) (asks :a))
+                              c  (local #(assoc % :b 5)  (mult-a-b))]
+                             [a b a' c])]
+    (= (monad-value {:a 10})
+       [10 nil 11 50])))
+
 (deftest seq-maybe-monad
   (with-monad (maybe-t sequence-m)
     (letfn [(pairs [xs] ((m-lift 2 #(list %1 %2)) xs xs))]
@@ -169,4 +213,3 @@
                      (+ x y))]
              (f :state)))
         (list [(list 11 21 12 22) :state]))))
-
