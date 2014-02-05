@@ -359,7 +359,7 @@
    [m-zero   nil
     m-result (fn m-result-maybe [v] v)
     m-bind   (fn m-bind-maybe [mv f]
-               (if (nil? mv) nil (f mv)))
+               (when-not (nil? mv) (f mv)))
     m-plus   (fn m-plus-maybe [& mvs]
                (first (drop-while nil? mvs)))
     ])
