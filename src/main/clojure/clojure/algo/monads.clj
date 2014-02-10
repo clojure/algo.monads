@@ -521,11 +521,11 @@
 (defmonad reader-m
   "Monad describing computations which read values from a shared environment.
   Also known as the environment monad."
-  [m-result  (fn [a]
-               (fn [_] a))
-   m-bind    (fn [m k]
+  [m-result  (fn m-result-reader [v]
+               (fn [r] v))
+   m-bind    (fn m-bind-reader [mv f]
                (fn [r]
-                 ((k (m r)) r)))
+                 ((f (mv r)) r)))
    ])
 
 (defn ask
