@@ -192,9 +192,9 @@
         monad-value (domonad reader-m
                              [a  (asks :a)
                               b  (asks :b)
-                              a' (local #(update-in % [:a] inc) (asks :a))
+                              a* (local #(update-in % [:a] inc) (asks :a))
                               c  (local #(assoc % :b 5)  (mult-a-b))]
-                             [a b a' c])]
+                             [a b a* c])]
     (= (monad-value {:a 10})
        [10 nil 11 50])))
 
