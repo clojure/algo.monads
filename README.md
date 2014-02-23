@@ -23,7 +23,7 @@ See the examples and the on-line monad tutorials:
 
 ## Releases and dependency information
 
-Latest stable release: 0.1.4
+Latest stable release: 0.1.5
 
 * [All released versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22algo.monads%22)
 
@@ -31,14 +31,14 @@ Latest stable release: 0.1.4
 
 [Leiningen](http://github.com/technomancy/leiningen/) dependency information:
 
-    [org.clojure/algo.monads "0.1.4"]
+    [org.clojure/algo.monads "0.1.5"]
 
 [Maven](http://maven.apache.org/) dependency information:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>algo.monads</artifactId>
-      <version>0.1.4</version>
+      <version>0.1.5</version>
     </dependency>
 
 
