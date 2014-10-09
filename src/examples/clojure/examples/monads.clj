@@ -37,7 +37,7 @@
 (domonad sequence-m
    [x (range 5)
     y (range 3)]
-    (+ x y))
+   (+ x y))
 
 ; Inside a with-monad block, domonad is used without the monad name.
 (with-monad sequence-m
@@ -91,7 +91,7 @@
 (domonad sequence-m
    [x  ((m-lift 1 (partial * 2)) (range 5))
     y  (range 2)]
-    [x y])
+   [x y])
 
 ; The m-plus operation does concatenation in the sequence monad.
 (domonad sequence-m
@@ -183,7 +183,7 @@
     (mean (for [x xs] (sq (- x m))))))
 
 ; rng implements a uniform distribution in the interval [0., 1.), so
-; ideally, the mean would be 1/2 (0.5) and the variance 1/12 (0.8333).
+; ideally, the mean would be 1/2 (0.5) and the variance 1/12 (0.08333).
 (mean (take 1000 (value-seq rng 1)))
 (variance (take 1000 (value-seq rng 1)))
 
