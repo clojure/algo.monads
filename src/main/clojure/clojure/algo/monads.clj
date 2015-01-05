@@ -581,7 +581,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defmacro monad-transformer
-  "Define a monad transforer in terms of the monad operations and the base
+  "Define a monad transformer in terms of the monad operations and the base
    monad. The argument which-m-plus chooses if m-zero and m-plus are taken
    from the base monad or from the transformer."
   [base which-m-plus operations]
