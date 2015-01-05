@@ -81,7 +81,7 @@
 
 (defn- if-then-else-statement
   "Process an :if :then :else steps when adding a new
-  monadic step to the mexrp."
+  monadic step to the mexpr."
   [[[_          else-mexpr]
     [then-bform then-mexpr]
     [if-bform   if-conditional]] mexpr continuation]
@@ -106,7 +106,7 @@
     (reduce merger [] cond-branches)))
 
 (defn cond-statement
-  "Process a :cond steps when adding a new monadic step to the mexrp."
+  "Process a :cond steps when adding a new monadic step to the mexpr."
   [expr mexpr continuation]
   (let [cond-sexps (partition 2 expr)
         result (for [[cond-sexp monadic-sexp] cond-sexps]
