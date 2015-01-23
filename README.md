@@ -6,6 +6,12 @@ Macros for defining monads, and definition of the most common monads
 
 See the examples and the on-line monad tutorials:
 
+* Konrad Hinsen's tutorial:		
+  * [Monad tutorial part 1](https://github.com/khinsen/monads-in-clojure/blob/master/PART1.md)		
+  * [Monad tutorial part 2](https://github.com/khinsen/monads-in-clojure/blob/master/PART2.md)		
+  * [Monad tutorial part 3](https://github.com/khinsen/monads-in-clojure/blob/master/PART3.md)		
+  * [Monad tutorial part 4](https://github.com/khinsen/monads-in-clojure/blob/master/PART4.md)		
+
 * Jim Duey's tutorial:
   * [Monads in Clojure](http://www.clojure.net/2012/02/02/Monads-in-Clojure/)
 
