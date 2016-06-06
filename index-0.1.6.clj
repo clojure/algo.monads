@@ -4,7 +4,7 @@
    :author "Konrad Hinsen",
    :name "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads/clojure.algo.monads-api.html",
+   "http://clojure.github.io/algo.monads/clojure.algo.monads-api.html",
    :source-url
    "https://github.com/clojure/algo.monads/blob/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj"}),
  :vars
@@ -20,7 +20,7 @@
    :doc "Returns the environment.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/ask"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/ask"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "asks",
@@ -33,7 +33,7 @@
    :doc "Returns a function of the current environment.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/asks"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/asks"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "call-cc",
@@ -47,7 +47,7 @@
    "A computation in the cont monad that calls function f with a single\nargument representing the current continuation. The function f should\nreturn a continuation (which becomes the return value of call-cc),\nor call the passed-in current continuation to terminate.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/call-cc"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/call-cc"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "cond-statement",
@@ -61,7 +61,7 @@
    "Process a :cond steps when adding a new monadic step to the mexpr.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/cond-statement"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/cond-statement"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "cont-m",
@@ -75,7 +75,7 @@
    "Monad describing computations in continuation-passing style. The monadic\nvalues are functions that are called with a single argument representing\nthe continuation of the computation, to which they pass their result.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/cont-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/cont-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "defmonad",
@@ -89,7 +89,7 @@
    "Define a named monad by defining the monad operations. The definitions\nare written like bindings to the monad operations m-bind and\nm-result (required) and m-zero and m-plus (optional).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/defmonad"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/defmonad"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "defmonadfn",
@@ -105,7 +105,7 @@
    "Like defn, but for functions that use monad operations and are used inside\na with-monad block.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/defmonadfn"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/defmonadfn"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "domonad",
@@ -119,7 +119,7 @@
    "Monad comprehension. Takes the name of a monad, a vector of steps\ngiven as binding-form/monadic-expression pairs, and a result value\nspecified by expr. The monadic-expression terms can use the binding\nvariables of the previous steps.\nIf the monad contains a definition of m-zero, the step list can also\ncontain conditions of the form :when p, where the predicate p can\ncontain the binding variables from all previous steps.\nA clause of the form :let [binding-form expr ...], where the bindings\nare given as a vector as for the use in let, establishes additional\nbindings that can be used in the following steps.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/domonad"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/domonad"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "fetch-state",
@@ -133,7 +133,7 @@
    "Return a state-monad function that returns the current state and does not\nmodify it.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/fetch-state"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/fetch-state"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "fetch-val",
@@ -147,7 +147,7 @@
    "Return a state-monad function that assumes the state to be a map and\nreturns the value corresponding to the given key. The state is not modified.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/fetch-val"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/fetch-val"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "identity-m",
@@ -161,7 +161,7 @@
    "Monad describing plain computations. This monad does in fact nothing\nat all. It is useful for testing, for combination with monad\ntransformers, and for code that is parameterized with a monad.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/identity-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/identity-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "local",
@@ -174,7 +174,7 @@
    :doc "Runs reader g in the context of an environment modified by f",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/local"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/local"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-chain",
@@ -188,7 +188,7 @@
    "Chains together monadic computation steps that are each functions\nof one parameter. Each step is called with the result of the previous\nstep as its argument. (m-chain (step1 step2)) is equivalent to\n(fn [x] (domonad [r1 (step1 x) r2 (step2 r1)] r2)).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-chain"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-chain"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-fmap",
@@ -202,7 +202,7 @@
    "Bind the monadic value m to the function returning (f x) for argument x",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-fmap"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-fmap"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-join",
@@ -216,7 +216,7 @@
    "Converts a monadic value containing a monadic value into a 'simple'\nmonadic value.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-join"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-join"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-lift",
@@ -230,7 +230,7 @@
    "Converts a function f of n arguments into a function of n\nmonadic arguments returning a monadic value.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-lift"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-lift"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-map",
@@ -244,7 +244,7 @@
    "'Executes' the sequence of monadic values resulting from mapping\nf onto the values xs. f must return a monadic value.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-map"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-map"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-reduce",
@@ -258,7 +258,7 @@
    "Return the reduction of (m-lift 2 f) over the list of monadic values mvs\nwith initial value (m-result val).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-reduce"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-reduce"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-seq",
@@ -272,7 +272,7 @@
    "'Executes' the monadic values in ms and returns a sequence of the\nbasic values contained in them.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-seq"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-seq"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-until",
@@ -286,7 +286,7 @@
    "While (p x) is false, replace x by the value returned by the\nmonadic computation (f x). Return (m-result x) for the first\nx for which (p x) is true.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-until"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-until"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-when",
@@ -300,7 +300,7 @@
    "If test is logical true, return monadic value m-expr, else return\n(m-result nil).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-when"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-when"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "m-when-not",
@@ -314,7 +314,7 @@
    "If test if logical false, return monadic value m-expr, else return\n(m-result nil).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/m-when-not"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/m-when-not"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "maybe-m",
@@ -328,7 +328,7 @@
    "Monad describing computations with possible failures. Failure is\nrepresented by nil, any other value is considered valid. As soon as\na step returns nil, the whole computation will yield nil as well.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/maybe-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/maybe-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "maybe-t",
@@ -342,7 +342,7 @@
    "Monad transformer that transforms a monad m into a monad in which\nthe base values can be invalid (represented by nothing, which defaults\nto nil). The third argument chooses if m-zero and m-plus are inherited\nfrom the base monad (use :m-plus-from-base) or adopt maybe-like\nbehaviour (use :m-plus-from-transformer). The default is :m-plus-from-base\nif the base monad m has a definition for m-plus, and\n:m-plus-from-transformer otherwise.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/maybe-t"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/maybe-t"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "monad",
@@ -356,7 +356,7 @@
    "Define a monad by defining the monad operations. The definitions\nare written like bindings to the monad operations m-bind and\nm-result (required) and m-zero and m-plus (optional).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/monad"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/monad"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "monad-transformer",
@@ -370,7 +370,7 @@
    "Define a monad transformer in terms of the monad operations and the base\nmonad. The argument which-m-plus chooses if m-zero and m-plus are taken\nfrom the base monad or from the transformer.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/monad-transformer"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/monad-transformer"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "reader-m",
@@ -384,7 +384,7 @@
    "Monad describing computations which read values from a shared environment.\nAlso known as the environment monad.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/reader-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/reader-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "run-cont",
@@ -398,7 +398,7 @@
    "Execute the computation c in the cont monad and return its result.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/run-cont"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/run-cont"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "sequence-m",
@@ -412,7 +412,7 @@
    "Monad describing multi-valued computations, i.e. computations\nthat can yield multiple values. Any object implementing the seq\nprotocol can be used as a monadic value.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/sequence-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/sequence-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "sequence-t",
@@ -426,7 +426,7 @@
    "Monad transformer that transforms a monad m into a monad in which\nthe base values are sequences. The argument which-m-plus chooses\nif m-zero and m-plus are inherited from the base monad\n(use :m-plus-from-base) or adopt sequence-like\nbehaviour (use :m-plus-from-transformer). The default is :m-plus-from-base\nif the base monad m has a definition for m-plus, and\n:m-plus-from-transformer otherwise.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/sequence-t"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/sequence-t"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "set-m",
@@ -440,7 +440,7 @@
    "Monad describing multi-valued computations, like sequence-m,\nbut returning sets of results instead of sequences of results.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/set-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/set-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "set-state",
@@ -454,7 +454,7 @@
    "Return a state-monad function that replaces the current state by s and\nreturns the previous state.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/set-state"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/set-state"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "set-val",
@@ -468,7 +468,7 @@
    "Return a state-monad function that assumes the state to be a map and\nreplaces the value associated with key by val. The old value is returned.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/set-val"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/set-val"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "state-m",
@@ -482,7 +482,7 @@
    "Monad describing stateful computations. The monadic values have the\nstructure (fn [old-state] [result new-state]).",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/state-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/state-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "state-m-until",
@@ -496,7 +496,7 @@
    "An optimized implementation of m-until for the state monad that\nreplaces recursion by a loop.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/state-m-until"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/state-m-until"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "state-t",
@@ -510,7 +510,7 @@
    "Monad transformer that transforms a monad m into a monad of stateful\ncomputations that have the base monad type as their result.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/state-t"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/state-t"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "update-state",
@@ -524,7 +524,7 @@
    "Return a state-monad function that replaces the current state by the\nresult of f applied to the current state and that returns the old state.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/update-state"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/update-state"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "update-val",
@@ -538,7 +538,7 @@
    "Return a state-monad function that assumes the state to be a map and\nreplaces the value associated with the given key by the return value\nof f applied to the old value. The old value is returned.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/update-val"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/update-val"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "with-monad",
@@ -552,7 +552,7 @@
    "Evaluates an expression after replacing the keywords defining the\nmonad operations by the functions associated with these keywords\nin the monad definition given by name.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/with-monad"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/with-monad"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "with-state-field",
@@ -566,7 +566,7 @@
    "Returns a state-monad function that expects a map as its state and\nruns statement (another state-monad function) on the state defined by\nthe map entry corresponding to key. The map entry is updated with the\nnew state returned by statement.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/with-state-field"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/with-state-field"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "writer-m",
@@ -580,7 +580,7 @@
    "Monad describing computations that accumulate data on the side, e.g. for\nlogging. The monadic values have the structure [value log]. Any of the\naccumulators from clojure.contrib.accumulators can be used for storing the\nlog data. Its empty value is passed as a parameter.",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/writer-m"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/writer-m"}
   {:raw-source-url
    "https://github.com/clojure/algo.monads/raw/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj",
    :name "writer-monad-protocol",
@@ -593,14 +593,14 @@
    :doc "Accumulation of values into containers",
    :namespace "clojure.algo.monads",
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/writer-monad-protocol"}
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/writer-monad-protocol"}
   {:name "writer-m-add",
    :doc "add value to container, return new container",
    :var-type "function",
    :namespace "clojure.algo.monads",
    :arglists ([container value]),
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/writer-m-add",
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/writer-m-add",
    :source-url nil,
    :raw-source-url nil,
    :file nil}
@@ -610,7 +610,7 @@
    :namespace "clojure.algo.monads",
    :arglists ([container1 container2]),
    :wiki-url
-   "http://clojure.github.com/algo.monads//clojure.algo.monads-api.html#clojure.algo.monads/writer-m-combine",
+   "http://clojure.github.io/algo.monads//index.html#clojure.algo.monads/writer-m-combine",
    :source-url nil,
    :raw-source-url nil,
    :file nil})}
