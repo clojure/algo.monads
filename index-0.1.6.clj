@@ -3,8 +3,7 @@
    "This library contains the most commonly used monads as well\nas macros for defining and using monads and useful monadic\nfunctions.",
    :author "Konrad Hinsen",
    :name "clojure.algo.monads",
-   :wiki-url
-   "http://clojure.github.io/algo.monads/clojure.algo.monads-api.html",
+   :wiki-url "http://clojure.github.io/algo.monads/index.html",
    :source-url
    "https://github.com/clojure/algo.monads/blob/a5118f04f43a40ab44ecf4748f4c86576266f514/src/main/clojure/clojure/algo/monads.clj"}),
  :vars
