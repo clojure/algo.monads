@@ -200,7 +200,9 @@
                [name docstring? attr-map? (args expr) ...])}
   [name & options]
   (let [[name options]  (name-with-attributes name options)
-        fn-name (symbol (str *ns*) (format "m+%s+m" (str name)))
+        fn-name (format "m+%s+m" (str name))
+        fn-sym (symbol fn-name)
+        full-sym (symbol (str *ns*) fn-name)
         make-fn-body    (fn [args expr]
                           (list (vec (concat ['m-bind 'm-result
                                               'm-zero 'm-plus] args))
@@ -211,15 +213,15 @@
             exprs           (map second options)
             ]
         `(do
-           (defsymbolmacro ~name (partial ~fn-name ~'m-bind ~'m-result 
+           (defsymbolmacro ~name (partial ~full-sym ~'m-bind ~'m-result
                                                    ~'m-zero ~'m-plus))
-           (defn ~fn-name ~@(map make-fn-body arglists exprs))))
+           (defn ~fn-sym ~@(map make-fn-body arglists exprs))))
       ; single arity
       (let [[args expr] options]
         `(do
-           (defsymbolmacro ~name (partial ~fn-name ~'m-bind ~'m-result 
+           (defsymbolmacro ~name (partial ~full-sym ~'m-bind ~'m-result
                                                    ~'m-zero ~'m-plus))
-           (defn ~fn-name ~@(make-fn-body args expr)))))))
+           (defn ~fn-sym ~@(make-fn-body args expr)))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
