@@ -2,7 +2,7 @@
 
   <artifactId>algo.monads</artifactId>
   <version>0.1.7-SNAPSHOT</version>
-  <name>${project.artifactId}</name>
+  <name>algo.monads</name>
   <modelVersion>4.0.0</modelVersion>
 
   <developers>
