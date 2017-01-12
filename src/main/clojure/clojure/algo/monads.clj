@@ -10,10 +10,10 @@
 
 (ns
   ^{:author "Konrad Hinsen"
-     :see-also [["http://onclojure.com/2009/03/05/a-monad-tutorial-for-clojure-programmers-part-1/" "Monad tutorial part 1"]
-                ["http://onclojure.com/2009/03/06/a-monad-tutorial-for-clojure-programmers-part-2/" "Monad tutorial part 2"]
-                ["http://onclojure.com/2009/03/23/a-monad-tutorial-for-clojure-programmers-part-3/" "Monad tutorial part 3"]
-                ["http://onclojure.com/2009/04/24/a-monad-tutorial-for-clojure-programmers-part-4/" "Monad tutorial part 4"]
+     :see-also [["https://github.com/khinsen/monads-in-clojure/blob/master/PART1.md" "Monad tutorial part 1"]
+                ["https://github.com/khinsen/monads-in-clojure/blob/master/PART2.md" "Monad tutorial part 2"]
+                ["https://github.com/khinsen/monads-in-clojure/blob/master/PART3.md" "Monad tutorial part 3"]
+                ["https://github.com/khinsen/monads-in-clojure/blob/master/PART4.md" "Monad tutorial part 4"]
                 ["http://www.clojure.net/tags.html#monads-ref" "Blog posts on monads in Clojure"]]
      :doc "This library contains the most commonly used monads as well
            as macros for defining and using monads and useful monadic
