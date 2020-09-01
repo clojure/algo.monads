@@ -29,6 +29,11 @@ Latest stable release: 0.1.6
 
 * [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~algo.monads~~~)
 
+[CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
+```clojure
+org.clojure/algo.monads {:mvn/version "0.1.6"}
+```
+
 [Leiningen](http://github.com/technomancy/leiningen/) dependency information:
 
     [org.clojure/algo.monads "0.1.6"]
