@@ -69,7 +69,7 @@
   (take n (concat steps (repeat nil))))
 
 (defn- each3-steps [steps]
-  "Transforms a list in a list of triples following the form:
+  "Transforms a list into a list of triples following the form:
    [a b c] => [[a b c] [b c nil] [c nil nil]]."
   (let [n (count steps)]
   (map vector (ensure-items n steps)
@@ -106,7 +106,7 @@
     (reduce merger [] cond-branches)))
 
 (defn cond-statement
-  "Process a :cond steps when adding a new monadic step to the mexpr."
+  "Process the :cond steps when adding a new monadic step to the mexpr."
   [expr mexpr continuation]
   (let [cond-sexps (partition 2 expr)
         result (for [[cond-sexp monadic-sexp] cond-sexps]
