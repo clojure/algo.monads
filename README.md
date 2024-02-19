@@ -11,39 +11,34 @@ See the examples and the on-line monad tutorials:
   * [Monad tutorial part 2](https://github.com/khinsen/monads-in-clojure/blob/master/PART2.md)
   * [Monad tutorial part 3](https://github.com/khinsen/monads-in-clojure/blob/master/PART3.md)
   * [Monad tutorial part 4](https://github.com/khinsen/monads-in-clojure/blob/master/PART4.md)
-
-* Jim Duey's tutorial:
-  * [Monads in Clojure](http://www.clojure.net/2012/02/02/Monads-in-Clojure/)
-
 * Leonardo Borges' tutorial:
-  * [Monads in Small Bites - Part I   - Functors](http://www.leonardoborges.com/writings/2012/11/30/monads-in-small-bites-part-i-functors/)
-  * [Monads in Small Bites - Part II  - Applicative Functors](http://www.leonardoborges.com/writings/2012/12/02/monads-in-small-bites-part-ii-applicative-functors/)
-  * [Monads in Small Bites - Part III - Monoids](http://www.leonardoborges.com/writings/2012/12/05/monads-in-small-bites-part-iii-monoids/)
-  * [Monads in Small Bites - Part IV  - Monads](http://www.leonardoborges.com/writings/2012/12/08/monads-in-small-bites-part-iv-monads/)
+  * [Monads in Small Bites - Part I   - Functors](https://www.leonardoborges.com/writings/2012/11/30/monads-in-small-bites-part-i-functors/)
+  * [Monads in Small Bites - Part II  - Applicative Functors](https://www.leonardoborges.com/writings/2012/12/02/monads-in-small-bites-part-ii-applicative-functors/)
+  * [Monads in Small Bites - Part III - Monoids](https://www.leonardoborges.com/writings/2012/12/05/monads-in-small-bites-part-iii-monoids/)
+  * [Monads in Small Bites - Part IV  - Monads](https://www.leonardoborges.com/writings/2012/12/08/monads-in-small-bites-part-iv-monads/)
 
 ## Releases and dependency information
 
-Latest stable release: 0.1.6
+Latest stable release: 0.2.0
 
-* [All released versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22algo.monads%22)
-
+* [All released versions](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22algo.monads%22)
 * [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~algo.monads~~~)
 
 [CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
 ```clojure
-org.clojure/algo.monads {:mvn/version "0.1.6"}
+org.clojure/algo.monads {:mvn/version "0.2.0"}
 ```
 
-[Leiningen](http://github.com/technomancy/leiningen/) dependency information:
+[Leiningen](https://github.com/technomancy/leiningen/) dependency information:
 
-    [org.clojure/algo.monads "0.1.6"]
+    [org.clojure/algo.monads "0.2.0"]
 
-[Maven](http://maven.apache.org/) dependency information:
+[Maven](https://maven.apache.org/) dependency information:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>algo.monads</artifactId>
-      <version>0.1.6</version>
+      <version>0.2.0</version>
     </dependency>
 
 
