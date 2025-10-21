@@ -3,6 +3,7 @@
   <artifactId>algo.monads</artifactId>
   <version>0.2.1-SNAPSHOT</version>
   <name>algo.monads</name>
+  <description>Macros for defining monads, and definition of the most common monads.</description>  
   <modelVersion>4.0.0</modelVersion>
 
   <developers>
