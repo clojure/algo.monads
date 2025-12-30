@@ -19,26 +19,26 @@ See the examples and the on-line monad tutorials:
 
 ## Releases and dependency information
 
-Latest stable release: 0.2.0
+Latest stable release: 0.2.1
 
 * [All released versions](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22algo.monads%22)
 * [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~algo.monads~~~)
 
 [CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
 ```clojure
-org.clojure/algo.monads {:mvn/version "0.2.0"}
+org.clojure/algo.monads {:mvn/version "0.2.1"}
 ```
 
 [Leiningen](https://github.com/technomancy/leiningen/) dependency information:
 
-    [org.clojure/algo.monads "0.2.0"]
+    [org.clojure/algo.monads "0.2.1"]
 
 [Maven](https://maven.apache.org/) dependency information:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>algo.monads</artifactId>
-      <version>0.2.0</version>
+      <version>0.2.1</version>
     </dependency>
 
 
